@@ -21,14 +21,25 @@ const UserInput: FC = () => {
 
   const getTextOfVoiceFromAPI = async () => {
     const resp = await fetch(
-      "https://run.mocky.io/v3/a3237e61-78fb-48b9-8dc2-355059175e25",
+      "https://run.mocky.io/v3/0fe94463-722f-48c4-aade-18eb5598ae76",
       {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
     );
 
-    const data: { transcription: string } = await resp.json();
-    return data.transcription;
+    const text = await resp.text();
+    return text;
+
+    // const data = JSON.parse(text);
+
+    // if (data.status === 200) {
+    //   return data.message;
+    // } else {
+    //   return "failed to fetch API";
+    // }
   };
 
   const handleStartRecording = async () => {
